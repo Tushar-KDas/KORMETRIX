@@ -1,0 +1,58 @@
+[
+  {
+    "id": "273b66c3-9541-437a-97b0-e11f2dc92002",
+    "fullName": "roy Applicant",
+    "email": "roys",
+    "phone": "+880 1887",
+    "department": "Engineering & Technology",
+    "designation": "Staff Associate",
+    "requestedRole": "employee",
+    "status": "APPROVED",
+    "requestedAt": "Nov 14, 2026, 2:43 PM",
+    "notes": "Submitted live via WorkForce 360 Mobile App APK (Supabase Synced)",
+    "reviewedAt": "11/14/2026, 2:44:45 PM",
+    "reviewedBy": "HR Manager / People Operations"
+  },
+  {
+    "id": "87827d37-dab3-4d83-aa35-58de9d78ada3",
+    "fullName": "Shakil Ahmed",
+    "email": "shakil.ahmed@workforce360.com",
+    "phone": "+880 1712-998877",
+    "department": "Engineering & Technology",
+    "designation": "Staff Associate",
+    "requestedRole": "employee",
+    "status": "APPROVED",
+    "requestedAt": "Nov 14, 2026, 2:39 PM",
+    "notes": "Submitted live via WorkForce 360 Mobile App APK (Supabase Synced)",
+    "reviewedAt": "11/14/2026, 2:39:20 PM",
+    "reviewedBy": "Sarah Khan (HR Admin)"
+  },
+  {
+    "id": "req-001",
+    "fullName": "Mahmudul Hasan",
+    "email": "mahmudul@workforce360.com",
+    "phone": "+880 1819-445566",
+    "department": "Engineering & Technology",
+    "designation": "Frontend React Developer",
+    "requestedRole": "employee",
+    "status": "REJECTED",
+    "requestedAt": "2026-11-14 10:15 AM",
+    "notes": "Mobile app onboarding request via Android APK v2.0.0",
+    "reviewedAt": "11/14/2026, 1:32:37 PM",
+    "reviewedBy": "HR Admin"
+  },
+  {
+    "id": "req-002",
+    "fullName": "Farhana Akter",
+    "email": "farhana@workforce360.com",
+    "phone": "+880 1712-334455",
+    "department": "Product, UI/UX & Design",
+    "designation": "UI/UX Visual Designer",
+    "requestedRole": "employee",
+    "status": "APPROVED",
+    "requestedAt": "2026-11-14 11:30 AM",
+    "notes": "Requested access for Product Design squad.",
+    "reviewedAt": "11/14/2026, 1:32:59 PM",
+    "reviewedBy": "HR Admin"
+  }
+]

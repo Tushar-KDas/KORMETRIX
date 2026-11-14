@@ -18,6 +18,7 @@ import {
   CalendarPlus,
   Briefcase,
   Download,
+  ShieldCheck,
 } from 'lucide-react';
 import {
   ResponsiveContainer,

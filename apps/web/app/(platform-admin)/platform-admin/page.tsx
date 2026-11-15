@@ -24,6 +24,8 @@ import {
   Check,
   Download,
   Plus,
+  Eye,
+  EyeOff,
 } from 'lucide-react';
 import {
   ResponsiveContainer,
@@ -39,10 +41,12 @@ import {
   Bar,
 } from 'recharts';
 import { mockDashboardData } from '@/lib/mock-data';
-import { formatBDT } from '@/lib/utils';
+import { cn, formatBDT } from '@/lib/utils';
+import { useSidebar } from '@/lib/sidebar-context';
 
 export default function PlatformAdminDashboard() {
   const { kpis, businessOverview, attendance, departmentDistribution, recentActivities, upcomingEvents, systemHealth, leaveBalances } = mockDashboardData;
+  const { hideDashboardOptions, toggleDashboardOptions } = useSidebar();
 
   // 1. Time range filter states
   const [businessTimeRange, setBusinessTimeRange] = useState<'12M' | '2025' | '30D'>('12M');
@@ -124,11 +128,31 @@ export default function PlatformAdminDashboard() {
               <span>System Online • 24 Apr 2025, 11:45 AM • Asia/Dhaka</span>
             </div>
           </div>
-          <div className="hidden lg:flex flex-col items-end text-right">
-            <span className="text-xl font-serif italic text-blue-200">
-              Smarter Workforce. Stronger Business.
-            </span>
-            <span className="text-xs text-blue-200/80 mt-1">WorkForce 360 Enterprise Bangladesh</span>
+          <div className="flex items-center gap-3">
+            <button
+              type="button"
+              onClick={toggleDashboardOptions}
+              className="px-3.5 py-2 bg-white/15 hover:bg-white/25 text-white rounded-xl text-xs font-bold backdrop-blur-md transition-all flex items-center gap-1.5 border border-white/20 shadow-xs"
+              title="Toggle Quick Actions & Dashboard options"
+            >
+              {hideDashboardOptions ? (
+                <>
+                  <Eye className="w-3.5 h-3.5 text-emerald-300" />
+                  <span>Show Options</span>
+                </>
+              ) : (
+                <>
+                  <EyeOff className="w-3.5 h-3.5 text-blue-200" />
+                  <span>Hide Options</span>
+                </>
+              )}
+            </button>
+            <div className="hidden lg:flex flex-col items-end text-right">
+              <span className="text-xl font-serif italic text-blue-200">
+                Smarter Workforce. Stronger Business.
+              </span>
+              <span className="text-xs text-blue-200/80 mt-1">WorkForce 360 Enterprise Bangladesh</span>
+            </div>
           </div>
         </div>
 
@@ -212,7 +236,10 @@ export default function PlatformAdminDashboard() {
       {/* 3. BUSINESS OVERVIEW & ATTENDANCE OVERVIEW & QUICK ACTIONS */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
         {/* Business Overview Chart with Working Filter */}
-        <div className="lg:col-span-5 bg-white dark:bg-[#1E293B] p-6 rounded-3xl border border-slate-200/80 dark:border-slate-800 shadow-sm space-y-4">
+        <div className={cn(
+          'bg-white dark:bg-[#1E293B] p-6 rounded-3xl border border-slate-200/80 dark:border-slate-800 shadow-sm space-y-4',
+          hideDashboardOptions ? 'lg:col-span-7' : 'lg:col-span-5'
+        )}>
           <div className="flex items-center justify-between">
             <div>
               <h2 className="text-base font-bold text-slate-900 dark:text-white">Business Overview</h2>
@@ -254,7 +281,10 @@ export default function PlatformAdminDashboard() {
         </div>
 
         {/* Attendance Overview Donut with Working Period Selector */}
-        <div className="lg:col-span-4 bg-white dark:bg-[#1E293B] p-6 rounded-3xl border border-slate-200/80 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+        <div className={cn(
+          'bg-white dark:bg-[#1E293B] p-6 rounded-3xl border border-slate-200/80 dark:border-slate-800 shadow-sm flex flex-col justify-between',
+          hideDashboardOptions ? 'lg:col-span-5' : 'lg:col-span-4'
+        )}>
           <div className="flex items-center justify-between mb-2">
             <div>
               <h2 className="text-base font-bold text-slate-900 dark:text-white">Attendance Overview</h2>
@@ -312,80 +342,82 @@ export default function PlatformAdminDashboard() {
         </div>
 
         {/* Quick Actions Panel - Each Card Directly Works with Action Modal or Navigation */}
-        <div className="lg:col-span-3 bg-white dark:bg-[#1E293B] p-6 rounded-3xl border border-slate-200/80 dark:border-slate-800 shadow-sm flex flex-col justify-between">
-          <div className="flex items-center justify-between mb-3">
-            <h2 className="text-base font-bold text-slate-900 dark:text-white">Quick Actions</h2>
-            <Link href="/admin" className="text-xs font-semibold text-[#3758D8] hover:underline">View All →</Link>
+        {!hideDashboardOptions && (
+          <div className="lg:col-span-3 bg-white dark:bg-[#1E293B] p-6 rounded-3xl border border-slate-200/80 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+            <div className="flex items-center justify-between mb-3">
+              <h2 className="text-base font-bold text-slate-900 dark:text-white">Quick Actions</h2>
+              <Link href="/admin" className="text-xs font-semibold text-[#3758D8] hover:underline">View All →</Link>
+            </div>
+
+            <div className="grid grid-cols-2 gap-2.5">
+              <button
+                type="button"
+                onClick={() => setActiveModal('ADD_EMP')}
+                className="p-3 rounded-2xl bg-slate-50 dark:bg-slate-800/60 hover:bg-blue-50 dark:hover:bg-blue-950/40 text-slate-700 dark:text-slate-200 transition-all flex flex-col items-center justify-center text-center group border border-slate-100 dark:border-slate-800"
+              >
+                <div className="w-9 h-9 rounded-xl bg-blue-100 dark:bg-blue-900/50 text-[#3758D8] flex items-center justify-center mb-1.5 group-hover:scale-110 transition-transform">
+                  <PlusCircle className="w-5 h-5" />
+                </div>
+                <span className="text-xs font-bold">Add Employee</span>
+              </button>
+
+              <button
+                type="button"
+                onClick={() => setActiveModal('MARK_ATTENDANCE')}
+                className="p-3 rounded-2xl bg-slate-50 dark:bg-slate-800/60 hover:bg-emerald-50 dark:hover:bg-emerald-950/40 text-slate-700 dark:text-slate-200 transition-all flex flex-col items-center justify-center text-center group border border-slate-100 dark:border-slate-800"
+              >
+                <div className="w-9 h-9 rounded-xl bg-emerald-100 dark:bg-emerald-900/50 text-emerald-600 flex items-center justify-center mb-1.5 group-hover:scale-110 transition-transform">
+                  <Fingerprint className="w-5 h-5" />
+                </div>
+                <span className="text-xs font-bold">Mark Attendance</span>
+              </button>
+
+              <button
+                type="button"
+                onClick={() => setActiveModal('APPLY_LEAVE')}
+                className="p-3 rounded-2xl bg-slate-50 dark:bg-slate-800/60 hover:bg-purple-50 dark:hover:bg-purple-950/40 text-slate-700 dark:text-slate-200 transition-all flex flex-col items-center justify-center text-center group border border-slate-100 dark:border-slate-800"
+              >
+                <div className="w-9 h-9 rounded-xl bg-purple-100 dark:bg-purple-900/50 text-purple-600 flex items-center justify-center mb-1.5 group-hover:scale-110 transition-transform">
+                  <CalendarPlus className="w-5 h-5" />
+                </div>
+                <span className="text-xs font-bold">Apply Leave</span>
+              </button>
+
+              <button
+                type="button"
+                onClick={() => setActiveModal('CREATE_TASK')}
+                className="p-3 rounded-2xl bg-slate-50 dark:bg-slate-800/60 hover:bg-cyan-50 dark:hover:bg-cyan-950/40 text-slate-700 dark:text-slate-200 transition-all flex flex-col items-center justify-center text-center group border border-slate-100 dark:border-slate-800"
+              >
+                <div className="w-9 h-9 rounded-xl bg-cyan-100 dark:bg-cyan-900/50 text-cyan-600 flex items-center justify-center mb-1.5 group-hover:scale-110 transition-transform">
+                  <CheckCircle2 className="w-5 h-5" />
+                </div>
+                <span className="text-xs font-bold">Create Task</span>
+              </button>
+
+              <button
+                type="button"
+                onClick={() => setActiveModal('ADD_PROJECT')}
+                className="p-3 rounded-2xl bg-slate-50 dark:bg-slate-800/60 hover:bg-amber-50 dark:hover:bg-amber-950/40 text-slate-700 dark:text-slate-200 transition-all flex flex-col items-center justify-center text-center group border border-slate-100 dark:border-slate-800"
+              >
+                <div className="w-9 h-9 rounded-xl bg-amber-100 dark:bg-amber-900/50 text-amber-600 flex items-center justify-center mb-1.5 group-hover:scale-110 transition-transform">
+                  <FolderPlus className="w-5 h-5" />
+                </div>
+                <span className="text-xs font-bold">Add Project</span>
+              </button>
+
+              <button
+                type="button"
+                onClick={() => setActiveModal('GEN_REPORT')}
+                className="p-3 rounded-2xl bg-slate-50 dark:bg-slate-800/60 hover:bg-rose-50 dark:hover:bg-rose-950/40 text-slate-700 dark:text-slate-200 transition-all flex flex-col items-center justify-center text-center group border border-slate-100 dark:border-slate-800"
+              >
+                <div className="w-9 h-9 rounded-xl bg-rose-100 dark:bg-rose-900/50 text-rose-600 flex items-center justify-center mb-1.5 group-hover:scale-110 transition-transform">
+                  <FileSpreadsheet className="w-5 h-5" />
+                </div>
+                <span className="text-xs font-bold">Generate Report</span>
+              </button>
+            </div>
           </div>
-
-          <div className="grid grid-cols-2 gap-2.5">
-            <button
-              type="button"
-              onClick={() => setActiveModal('ADD_EMP')}
-              className="p-3 rounded-2xl bg-slate-50 dark:bg-slate-800/60 hover:bg-blue-50 dark:hover:bg-blue-950/40 text-slate-700 dark:text-slate-200 transition-all flex flex-col items-center justify-center text-center group border border-slate-100 dark:border-slate-800"
-            >
-              <div className="w-9 h-9 rounded-xl bg-blue-100 dark:bg-blue-900/50 text-[#3758D8] flex items-center justify-center mb-1.5 group-hover:scale-110 transition-transform">
-                <PlusCircle className="w-5 h-5" />
-              </div>
-              <span className="text-xs font-bold">Add Employee</span>
-            </button>
-
-            <button
-              type="button"
-              onClick={() => setActiveModal('MARK_ATTENDANCE')}
-              className="p-3 rounded-2xl bg-slate-50 dark:bg-slate-800/60 hover:bg-emerald-50 dark:hover:bg-emerald-950/40 text-slate-700 dark:text-slate-200 transition-all flex flex-col items-center justify-center text-center group border border-slate-100 dark:border-slate-800"
-            >
-              <div className="w-9 h-9 rounded-xl bg-emerald-100 dark:bg-emerald-900/50 text-emerald-600 flex items-center justify-center mb-1.5 group-hover:scale-110 transition-transform">
-                <Fingerprint className="w-5 h-5" />
-              </div>
-              <span className="text-xs font-bold">Mark Attendance</span>
-            </button>
-
-            <button
-              type="button"
-              onClick={() => setActiveModal('APPLY_LEAVE')}
-              className="p-3 rounded-2xl bg-slate-50 dark:bg-slate-800/60 hover:bg-purple-50 dark:hover:bg-purple-950/40 text-slate-700 dark:text-slate-200 transition-all flex flex-col items-center justify-center text-center group border border-slate-100 dark:border-slate-800"
-            >
-              <div className="w-9 h-9 rounded-xl bg-purple-100 dark:bg-purple-900/50 text-purple-600 flex items-center justify-center mb-1.5 group-hover:scale-110 transition-transform">
-                <CalendarPlus className="w-5 h-5" />
-              </div>
-              <span className="text-xs font-bold">Apply Leave</span>
-            </button>
-
-            <button
-              type="button"
-              onClick={() => setActiveModal('CREATE_TASK')}
-              className="p-3 rounded-2xl bg-slate-50 dark:bg-slate-800/60 hover:bg-cyan-50 dark:hover:bg-cyan-950/40 text-slate-700 dark:text-slate-200 transition-all flex flex-col items-center justify-center text-center group border border-slate-100 dark:border-slate-800"
-            >
-              <div className="w-9 h-9 rounded-xl bg-cyan-100 dark:bg-cyan-900/50 text-cyan-600 flex items-center justify-center mb-1.5 group-hover:scale-110 transition-transform">
-                <CheckCircle2 className="w-5 h-5" />
-              </div>
-              <span className="text-xs font-bold">Create Task</span>
-            </button>
-
-            <button
-              type="button"
-              onClick={() => setActiveModal('ADD_PROJECT')}
-              className="p-3 rounded-2xl bg-slate-50 dark:bg-slate-800/60 hover:bg-amber-50 dark:hover:bg-amber-950/40 text-slate-700 dark:text-slate-200 transition-all flex flex-col items-center justify-center text-center group border border-slate-100 dark:border-slate-800"
-            >
-              <div className="w-9 h-9 rounded-xl bg-amber-100 dark:bg-amber-900/50 text-amber-600 flex items-center justify-center mb-1.5 group-hover:scale-110 transition-transform">
-                <FolderPlus className="w-5 h-5" />
-              </div>
-              <span className="text-xs font-bold">Add Project</span>
-            </button>
-
-            <button
-              type="button"
-              onClick={() => setActiveModal('GEN_REPORT')}
-              className="p-3 rounded-2xl bg-slate-50 dark:bg-slate-800/60 hover:bg-rose-50 dark:hover:bg-rose-950/40 text-slate-700 dark:text-slate-200 transition-all flex flex-col items-center justify-center text-center group border border-slate-100 dark:border-slate-800"
-            >
-              <div className="w-9 h-9 rounded-xl bg-rose-100 dark:bg-rose-900/50 text-rose-600 flex items-center justify-center mb-1.5 group-hover:scale-110 transition-transform">
-                <FileSpreadsheet className="w-5 h-5" />
-              </div>
-              <span className="text-xs font-bold">Generate Report</span>
-            </button>
-          </div>
-        </div>
+        )}
       </div>
 
       {/* 4. RECENT ACTIVITIES & DEPARTMENT STATS & UPCOMING EVENTS & SYSTEM HEALTH */}

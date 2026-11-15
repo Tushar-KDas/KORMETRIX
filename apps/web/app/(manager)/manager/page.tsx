@@ -17,7 +17,10 @@ import {
   Plus,
   AlertCircle,
   CheckCircle2,
+  Eye,
+  EyeOff,
 } from 'lucide-react';
+import { useSidebar } from '@/lib/sidebar-context';
 import {
   ResponsiveContainer,
   LineChart,
@@ -64,6 +67,7 @@ const initialActions: PendingAction[] = [
 ];
 
 export default function ManagerPortalPage() {
+  const { hideDashboardOptions, toggleDashboardOptions } = useSidebar();
   const [team, setTeam] = useState(mockManagerTeam);
   const [pendingActions, setPendingActions] = useState<PendingAction[]>(initialActions);
   const [toastMessage, setToastMessage] = useState<string | null>(null);
@@ -96,6 +100,24 @@ export default function ManagerPortalPage() {
         </div>
 
         <div className="flex items-center gap-3">
+          <button
+            type="button"
+            onClick={toggleDashboardOptions}
+            className="px-3.5 py-2.5 bg-white/15 hover:bg-white/25 text-white rounded-xl text-xs font-bold backdrop-blur-md transition-all flex items-center gap-1.5 border border-white/20 shadow-xs"
+            title="Toggle extra options"
+          >
+            {hideDashboardOptions ? (
+              <>
+                <Eye className="w-3.5 h-3.5 text-purple-200" />
+                <span>Show Options</span>
+              </>
+            ) : (
+              <>
+                <EyeOff className="w-3.5 h-3.5 text-purple-200" />
+                <span>Hide Options</span>
+              </>
+            )}
+          </button>
           <button
             onClick={() => setShowAssignModal(true)}
             className="flex items-center gap-2 px-5 py-2.5 rounded-2xl bg-[#8B5CF6] hover:bg-purple-600 text-white text-xs font-bold transition-all shadow-lg shadow-purple-600/30"

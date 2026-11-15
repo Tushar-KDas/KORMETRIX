@@ -19,7 +19,11 @@ import {
   Briefcase,
   Download,
   ShieldCheck,
+  Eye,
+  EyeOff,
 } from 'lucide-react';
+import { cn } from '@/lib/utils';
+import { useSidebar } from '@/lib/sidebar-context';
 import {
   ResponsiveContainer,
   LineChart,
@@ -40,6 +44,7 @@ const attendanceWeekData = [
 ];
 
 export default function CompanyAdminDashboard() {
+  const { hideDashboardOptions, toggleDashboardOptions } = useSidebar();
   const [activeModal, setActiveModal] = useState<'NONE' | 'ADD_EMP' | 'CREATE_TASK' | 'APPLY_LEAVE' | 'VIEW_REPORTS'>('NONE');
   const [toastMessage, setToastMessage] = useState<string | null>(null);
 
@@ -71,7 +76,26 @@ export default function CompanyAdminDashboard() {
           <h1 className="text-2xl md:text-3xl font-black">Welcome Back, Admin! 👋</h1>
           <p className="text-blue-100 text-sm mt-1">Here&apos;s what&apos;s happening with your team today at WorkForce 360 Ltd.</p>
         </div>
-        <div className="flex items-center gap-2">
+        <div className="flex flex-wrap items-center gap-2">
+          {/* Hide/Show Dashboard Options Button */}
+          <button
+            type="button"
+            onClick={toggleDashboardOptions}
+            className="px-3.5 py-2 bg-white/15 hover:bg-white/25 text-white rounded-xl text-xs font-bold backdrop-blur-md transition-all flex items-center gap-1.5 border border-white/20 shadow-xs"
+            title="Toggle Quick Actions & Dashboard options"
+          >
+            {hideDashboardOptions ? (
+              <>
+                <Eye className="w-3.5 h-3.5 text-emerald-300" />
+                <span>Show Options</span>
+              </>
+            ) : (
+              <>
+                <EyeOff className="w-3.5 h-3.5 text-blue-200" />
+                <span>Hide Options</span>
+              </>
+            )}
+          </button>
           <Link
             href="/admin/employees"
             className="px-4 py-2 bg-white/10 hover:bg-white/20 text-white rounded-xl text-xs font-bold backdrop-blur-md transition-colors"
@@ -186,8 +210,13 @@ export default function CompanyAdminDashboard() {
       {/* Main Grid: Attendance Week Chart & Quick Actions */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
         {/* Attendance Overview Line Chart */}
-        <div className="lg:col-span-8 bg-white dark:bg-[#1E293B] p-6 rounded-3xl border border-slate-200/80 dark:border-slate-800 shadow-sm space-y-4">
-          <div className="flex items-center justify-between">
+        <div
+          className={cn(
+            'bg-white dark:bg-[#1E293B] p-4 sm:p-6 rounded-3xl border border-slate-200/80 dark:border-slate-800 shadow-sm space-y-4 transition-all duration-300',
+            hideDashboardOptions ? 'lg:col-span-12' : 'lg:col-span-8'
+          )}
+        >
+          <div className="flex flex-wrap items-center justify-between gap-2">
             <div>
               <h2 className="text-base font-bold text-slate-900 dark:text-white">Attendance Overview</h2>
               <p className="text-xs text-slate-500">Weekly present vs absent distribution at Banani HQ</p>
@@ -213,71 +242,83 @@ export default function CompanyAdminDashboard() {
           </div>
         </div>
 
-        {/* Quick Actions & Performance Gauge */}
-        <div className="lg:col-span-4 space-y-6">
-          <div className="bg-white dark:bg-[#1E293B] p-6 rounded-3xl border border-slate-200/80 dark:border-slate-800 shadow-sm space-y-3">
-            <h2 className="text-base font-bold text-slate-900 dark:text-white">Quick Actions</h2>
-            <div className="space-y-2">
-              <button
-                type="button"
-                onClick={() => setActiveModal('ADD_EMP')}
-                className="w-full p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800/60 hover:bg-blue-50 dark:hover:bg-blue-950/40 text-slate-700 dark:text-slate-200 transition-colors flex items-center justify-between text-xs font-bold"
-              >
-                <span className="flex items-center gap-2.5">
-                  <Plus className="w-4 h-4 text-[#3758D8]" /> Add Employee
-                </span>
-                <span>→</span>
-              </button>
+        {/* Quick Actions & Performance Gauge (Hideable Dashboard Options) */}
+        {!hideDashboardOptions && (
+          <div className="lg:col-span-4 space-y-6 animate-in fade-in zoom-in-95 duration-200">
+            <div className="bg-white dark:bg-[#1E293B] p-6 rounded-3xl border border-slate-200/80 dark:border-slate-800 shadow-sm space-y-3">
+              <div className="flex items-center justify-between">
+                <h2 className="text-base font-bold text-slate-900 dark:text-white">Quick Actions</h2>
+                <button
+                  type="button"
+                  onClick={toggleDashboardOptions}
+                  className="text-[10px] text-slate-400 hover:text-slate-600 dark:hover:text-slate-200"
+                  title="Hide this panel"
+                >
+                  Hide
+                </button>
+              </div>
+              <div className="space-y-2">
+                <button
+                  type="button"
+                  onClick={() => setActiveModal('ADD_EMP')}
+                  className="w-full p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800/60 hover:bg-blue-50 dark:hover:bg-blue-950/40 text-slate-700 dark:text-slate-200 transition-colors flex items-center justify-between text-xs font-bold"
+                >
+                  <span className="flex items-center gap-2.5">
+                    <Plus className="w-4 h-4 text-[#3758D8]" /> Add Employee
+                  </span>
+                  <span>→</span>
+                </button>
 
-              <button
-                type="button"
-                onClick={() => setActiveModal('CREATE_TASK')}
-                className="w-full p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800/60 hover:bg-emerald-50 dark:hover:bg-emerald-950/40 text-slate-700 dark:text-slate-200 transition-colors flex items-center justify-between text-xs font-bold"
-              >
-                <span className="flex items-center gap-2.5">
-                  <Plus className="w-4 h-4 text-emerald-600" /> Create Task
-                </span>
-                <span>→</span>
-              </button>
+                <button
+                  type="button"
+                  onClick={() => setActiveModal('CREATE_TASK')}
+                  className="w-full p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800/60 hover:bg-emerald-50 dark:hover:bg-emerald-950/40 text-slate-700 dark:text-slate-200 transition-colors flex items-center justify-between text-xs font-bold"
+                >
+                  <span className="flex items-center gap-2.5">
+                    <Plus className="w-4 h-4 text-emerald-600" /> Create Task
+                  </span>
+                  <span>→</span>
+                </button>
 
-              <button
-                type="button"
-                onClick={() => setActiveModal('APPLY_LEAVE')}
-                className="w-full p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800/60 hover:bg-purple-50 dark:hover:bg-purple-950/40 text-slate-700 dark:text-slate-200 transition-colors flex items-center justify-between text-xs font-bold"
-              >
-                <span className="flex items-center gap-2.5">
-                  <Calendar className="w-4 h-4 text-purple-600" /> Apply Leave
-                </span>
-                <span>→</span>
-              </button>
+                <button
+                  type="button"
+                  onClick={() => setActiveModal('APPLY_LEAVE')}
+                  className="w-full p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800/60 hover:bg-purple-50 dark:hover:bg-purple-950/40 text-slate-700 dark:text-slate-200 transition-colors flex items-center justify-between text-xs font-bold"
+                >
+                  <span className="flex items-center gap-2.5">
+                    <Calendar className="w-4 h-4 text-purple-600" /> Apply Leave
+                  </span>
+                  <span>→</span>
+                </button>
 
-              <button
-                type="button"
-                onClick={() => setActiveModal('VIEW_REPORTS')}
-                className="w-full p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800/60 hover:bg-amber-50 dark:hover:bg-amber-950/40 text-slate-700 dark:text-slate-200 transition-colors flex items-center justify-between text-xs font-bold"
-              >
-                <span className="flex items-center gap-2.5">
-                  <FileText className="w-4 h-4 text-amber-600" /> View Reports
-                </span>
-                <span>→</span>
-              </button>
+                <button
+                  type="button"
+                  onClick={() => setActiveModal('VIEW_REPORTS')}
+                  className="w-full p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800/60 hover:bg-amber-50 dark:hover:bg-amber-950/40 text-slate-700 dark:text-slate-200 transition-colors flex items-center justify-between text-xs font-bold"
+                >
+                  <span className="flex items-center gap-2.5">
+                    <FileText className="w-4 h-4 text-amber-600" /> View Reports
+                  </span>
+                  <span>→</span>
+                </button>
+              </div>
             </div>
+
+            {/* Team Performance Gauge */}
+            <Link
+              href="/admin/performance"
+              className="bg-white dark:bg-[#1E293B] p-6 rounded-3xl border border-slate-200/80 dark:border-slate-800 shadow-sm text-center block hover:border-emerald-500 transition-all"
+            >
+              <h2 className="text-base font-bold text-slate-900 dark:text-white">Team Performance</h2>
+              <div className="my-4">
+                <span className="text-4xl font-black text-emerald-600">92%</span>
+                <p className="text-xs font-semibold text-slate-500 mt-1">Overall Performance</p>
+                <span className="text-xs font-bold text-emerald-600">↑ +2% this week</span>
+              </div>
+              <p className="text-[11px] text-[#3758D8] font-bold hover:underline">View Appraisals & Leaderboard →</p>
+            </Link>
           </div>
-
-          {/* Team Performance Gauge */}
-          <Link
-            href="/admin/performance"
-            className="bg-white dark:bg-[#1E293B] p-6 rounded-3xl border border-slate-200/80 dark:border-slate-800 shadow-sm text-center block hover:border-emerald-500 transition-all"
-          >
-            <h2 className="text-base font-bold text-slate-900 dark:text-white">Team Performance</h2>
-            <div className="my-4">
-              <span className="text-4xl font-black text-emerald-600">92%</span>
-              <p className="text-xs font-semibold text-slate-500 mt-1">Overall Performance</p>
-              <span className="text-xs font-bold text-emerald-600">↑ +2% this week</span>
-            </div>
-            <p className="text-[11px] text-[#3758D8] font-bold hover:underline">View Appraisals & Leaderboard →</p>
-          </Link>
-        </div>
+        )}
       </div>
 
       {/* Modals for Company Admin Actions */}

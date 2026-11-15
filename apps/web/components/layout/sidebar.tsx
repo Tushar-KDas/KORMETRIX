@@ -26,8 +26,11 @@ import {
   Smartphone,
   LogOut,
   AlertCircle,
+  X,
+  PanelLeftClose,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { useSidebar } from '@/lib/sidebar-context';
 import { MobileAppDownloadButton } from '@/components/common/mobile-app-download-button';
 
 interface NavItem {
@@ -66,6 +69,7 @@ export function Sidebar() {
   const pathname = usePathname();
   const router = useRouter();
   const [showLogoutConfirm, setShowLogoutConfirm] = useState(false);
+  const { isMobileOpen, closeMobile, isSidebarHidden, toggleSidebar } = useSidebar();
 
   const handleLogout = () => {
     // Clear session and redirect to login
@@ -74,20 +78,49 @@ export function Sidebar() {
 
   return (
     <>
-      <aside className="w-64 flex-shrink-0 bg-[#0F172A] text-slate-300 flex flex-col h-screen border-r border-slate-800 select-none z-30">
+      {/* Mobile Drawer Backdrop */}
+      {isMobileOpen && (
+        <div
+          onClick={closeMobile}
+          className="fixed inset-0 bg-slate-950/70 backdrop-blur-xs z-40 lg:hidden animate-in fade-in duration-200"
+          aria-hidden="true"
+        />
+      )}
+
+      <aside
+        className={cn(
+          'bg-[#0F172A] text-slate-300 flex flex-col h-screen border-r border-slate-800 select-none z-50 transition-all duration-300 ease-in-out',
+          // Mobile Drawer:
+          'fixed inset-y-0 left-0 w-72 max-w-[85vw] shadow-2xl lg:shadow-none lg:static',
+          isMobileOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0',
+          // Desktop Toggle / Focus Mode:
+          isSidebarHidden ? 'lg:hidden' : 'lg:flex lg:w-64 lg:flex-shrink-0'
+        )}
+      >
         {/* Brand Header */}
-        <div className="p-4 flex items-center gap-3 border-b border-slate-800 bg-[#0B1120]">
-          <img
-            src="/icon.png"
-            alt="WorkForce 360"
-            className="w-10 h-10 object-contain drop-shadow-md"
-          />
-          <div>
-            <h1 className="font-bold text-white text-base tracking-tight flex items-center gap-1.5">
-              WorkForce <span className="text-[#3758D8]">360</span>
-            </h1>
-            <p className="text-[10px] text-slate-400 font-medium">One Platform. Complete Control.</p>
+        <div className="p-4 flex items-center justify-between border-b border-slate-800 bg-[#0B1120]">
+          <div className="flex items-center gap-3">
+            <img
+              src="/icon.png"
+              alt="WorkForce 360"
+              className="w-10 h-10 object-contain drop-shadow-md"
+            />
+            <div>
+              <h1 className="font-bold text-white text-base tracking-tight flex items-center gap-1.5">
+                WorkForce <span className="text-[#3758D8]">360</span>
+              </h1>
+              <p className="text-[10px] text-slate-400 font-medium">One Platform. Complete Control.</p>
+            </div>
           </div>
+          {/* Mobile Close Button */}
+          <button
+            type="button"
+            onClick={closeMobile}
+            className="lg:hidden p-1.5 rounded-xl bg-slate-800/80 text-slate-400 hover:text-white hover:bg-slate-700 transition-colors"
+            title="Close menu"
+          >
+            <X className="w-5 h-5" />
+          </button>
         </div>
 
         {/* Navigation List */}
@@ -101,6 +134,7 @@ export function Sidebar() {
               <Link
                 key={item.href}
                 href={item.href}
+                onClick={closeMobile}
                 className={cn(
                   'flex items-center justify-between px-3 py-2.5 rounded-xl text-sm font-medium transition-all group',
                   isActive
@@ -169,6 +203,15 @@ export function Sidebar() {
           </div>
 
           <MobileAppDownloadButton variant="sidebar" />
+
+          <button
+            onClick={toggleSidebar}
+            className="hidden lg:flex w-full py-2 px-3 rounded-xl bg-slate-800/60 hover:bg-slate-800 text-slate-400 hover:text-slate-200 border border-slate-700/60 transition-colors items-center justify-center gap-2 text-xs font-semibold"
+            title="Hide sidebar to focus"
+          >
+            <PanelLeftClose className="w-3.5 h-3.5" />
+            <span>Hide Sidebar (Focus)</span>
+          </button>
 
           {/* Prominent Logout Button (Matches Mockup Image 4) */}
           <button

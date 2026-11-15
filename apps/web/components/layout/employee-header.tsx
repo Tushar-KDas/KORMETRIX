@@ -14,36 +14,72 @@ import {
   ChevronDown,
   CheckCircle2,
   Calendar,
+  Menu,
+  PanelLeftClose,
+  PanelLeftOpen,
 } from 'lucide-react';
 import { RoleSwitcherModal } from './role-switcher-modal';
 import { MobileAppDownloadButton } from '@/components/common/mobile-app-download-button';
 import { useCurrentUser } from '@/lib/use-current-user';
+import { useSidebar } from '@/lib/sidebar-context';
 
 export function EmployeeHeader() {
   const router = useRouter();
   const currentUser = useCurrentUser();
+  const { toggleMobile, isSidebarHidden, toggleSidebar } = useSidebar();
   const [showRoleModal, setShowRoleModal] = useState(false);
   const [showProfileMenu, setShowProfileMenu] = useState(false);
   const [showNotifications, setShowNotifications] = useState(false);
 
   return (
     <>
-      <header className="h-16 border-b border-slate-200/80 dark:border-slate-800 bg-white/95 dark:bg-[#0F172A]/95 backdrop-blur-md px-6 flex items-center justify-between z-20 flex-shrink-0">
-        {/* Left: Search & Geofence Badge */}
-        <div className="flex items-center gap-4">
-          <div className="relative w-64 md:w-80">
-            <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
+      <header className="h-16 border-b border-slate-200/80 dark:border-slate-800 bg-white/95 dark:bg-[#0F172A]/95 backdrop-blur-md px-3 sm:px-6 flex items-center justify-between z-20 flex-shrink-0 gap-2 sm:gap-4">
+        {/* Left: Mobile Menu & Focus Mode */}
+        <div className="flex items-center gap-1.5 sm:gap-2 flex-shrink-0">
+          <button
+            type="button"
+            onClick={toggleMobile}
+            aria-label="Toggle Navigation Menu"
+            className="lg:hidden p-2 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors"
+            title="Open Menu"
+          >
+            <Menu className="w-5 h-5 text-blue-600 dark:text-blue-400" />
+          </button>
+
+          <button
+            type="button"
+            onClick={toggleSidebar}
+            className="p-2 sm:px-3 sm:py-1.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors flex items-center gap-1.5 text-xs font-bold"
+            title={isSidebarHidden ? 'Show Navigation Menu' : 'Hide Navigation Menu (Full View)'}
+          >
+            {isSidebarHidden ? (
+              <>
+                <PanelLeftOpen className="w-4 h-4 text-blue-600 dark:text-blue-400" />
+                <span className="hidden sm:inline text-blue-600 dark:text-blue-400">Show Menu</span>
+              </>
+            ) : (
+              <>
+                <PanelLeftClose className="w-4 h-4 text-slate-500" />
+                <span className="hidden md:inline text-slate-600 dark:text-slate-400 font-semibold">Hide Menu</span>
+              </>
+            )}
+          </button>
+        </div>
+
+        {/* Search & Geofence Badge */}
+        <div className="flex items-center gap-2 sm:gap-4 flex-1 max-w-sm">
+          <div className="relative w-full">
+            <Search className="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
             <input
               type="text"
-              placeholder="Search tasks, documents, payslips..."
-              className="w-full pl-9 pr-4 py-1.5 text-xs rounded-xl bg-slate-100 dark:bg-slate-800/80 border-none focus:ring-2 focus:ring-[#3758D8] text-slate-900 dark:text-white placeholder-slate-400"
+              placeholder="Search tasks, documents..."
+              className="w-full pl-8 pr-3 py-1.5 text-xs rounded-xl bg-slate-100 dark:bg-slate-800/80 border-none focus:ring-2 focus:ring-[#3758D8] text-slate-900 dark:text-white placeholder-slate-400"
             />
           </div>
 
-          <div className="hidden lg:flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 dark:bg-emerald-950/40 text-emerald-600 dark:text-emerald-400 text-xs font-semibold border border-emerald-200/60 dark:border-emerald-800/60">
+          <div className="hidden xl:flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 dark:bg-emerald-950/40 text-emerald-600 dark:text-emerald-400 text-xs font-semibold border border-emerald-200/60 dark:border-emerald-800/60 whitespace-nowrap">
             <MapPin className="w-3.5 h-3.5 text-emerald-500" />
-            <span>Banani HQ Geofence</span>
-            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-ping" />
+            <span>Banani HQ</span>
           </div>
         </div>
 

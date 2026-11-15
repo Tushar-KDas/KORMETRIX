@@ -18,9 +18,12 @@ import {
   X,
   FileText,
   DollarSign,
+  Eye,
+  EyeOff,
 } from 'lucide-react';
-import { formatBDT } from '@/lib/utils';
+import { cn, formatBDT } from '@/lib/utils';
 import { useCurrentUser } from '@/lib/use-current-user';
+import { useSidebar } from '@/lib/sidebar-context';
 
 interface EmployeeTask {
   id: string;
@@ -39,6 +42,7 @@ const initialTasks: EmployeeTask[] = [
 
 export default function EmployeePortalDashboard() {
   const { user: currentUser } = useCurrentUser();
+  const { hideDashboardOptions, toggleDashboardOptions } = useSidebar();
   const [isCheckedIn, setIsCheckedIn] = useState(true);
   const [punchMessage, setPunchMessage] = useState<string | null>(null);
   const [tasks, setTasks] = useState<EmployeeTask[]>(initialTasks);
@@ -100,6 +104,24 @@ export default function EmployeePortalDashboard() {
 
         <div className="flex flex-wrap items-center gap-3">
           <button
+            type="button"
+            onClick={toggleDashboardOptions}
+            className="px-3.5 py-2.5 bg-white/15 hover:bg-white/25 text-white rounded-2xl text-xs font-bold backdrop-blur-md transition-all flex items-center gap-1.5 border border-white/20 shadow-xs"
+            title="Toggle extra options"
+          >
+            {hideDashboardOptions ? (
+              <>
+                <Eye className="w-3.5 h-3.5 text-blue-200" />
+                <span>Show Options</span>
+              </>
+            ) : (
+              <>
+                <EyeOff className="w-3.5 h-3.5 text-blue-200" />
+                <span>Hide Options</span>
+              </>
+            )}
+          </button>
+          <button
             onClick={() => setShowLeaveModal(true)}
             className="px-4 py-2.5 rounded-2xl bg-white/10 hover:bg-white/20 text-white font-bold text-xs border border-white/20 transition-all flex items-center gap-2"
           >
@@ -148,7 +170,10 @@ export default function EmployeePortalDashboard() {
       {/* Main Grid: My Tasks & Payslip */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
         {/* My Tasks (Interactive Checklist) */}
-        <div className="lg:col-span-8 bg-white dark:bg-[#1E293B] p-6 rounded-3xl border border-slate-200/80 dark:border-slate-800 shadow-xs space-y-4">
+        <div className={cn(
+          'bg-white dark:bg-[#1E293B] p-6 rounded-3xl border border-slate-200/80 dark:border-slate-800 shadow-xs space-y-4',
+          hideDashboardOptions ? 'lg:col-span-12' : 'lg:col-span-8'
+        )}>
           <div className="flex items-center justify-between">
             <div>
               <h2 className="text-base font-bold text-slate-900 dark:text-white">My Assigned Tasks</h2>
@@ -201,46 +226,48 @@ export default function EmployeePortalDashboard() {
         </div>
 
         {/* Salary & Payslip Quick Card */}
-        <div className="lg:col-span-4 space-y-6">
-          <div className="bg-white dark:bg-[#1E293B] p-6 rounded-3xl border border-slate-200/80 dark:border-slate-800 shadow-xs space-y-4">
-            <h2 className="text-base font-bold text-slate-900 dark:text-white">Recent Payslip (April 2025)</h2>
-            <div className="p-4 rounded-2xl bg-blue-50/50 dark:bg-blue-950/30 border border-blue-100 dark:border-blue-900/40">
-              <p className="text-xs text-slate-500 font-semibold">Net Disbursed Salary</p>
-              <h3 className="text-3xl font-black text-slate-900 dark:text-white mt-1">
-                {formatBDT(67750)}
-              </h3>
-              <p className="text-[11px] text-emerald-600 font-bold mt-1">✓ Credited to BRAC Bank A/C ...6002</p>
-            </div>
+        {!hideDashboardOptions && (
+          <div className="lg:col-span-4 space-y-6">
+            <div className="bg-white dark:bg-[#1E293B] p-6 rounded-3xl border border-slate-200/80 dark:border-slate-800 shadow-xs space-y-4">
+              <h2 className="text-base font-bold text-slate-900 dark:text-white">Recent Payslip (April 2025)</h2>
+              <div className="p-4 rounded-2xl bg-blue-50/50 dark:bg-blue-950/30 border border-blue-100 dark:border-blue-900/40">
+                <p className="text-xs text-slate-500 font-semibold">Net Disbursed Salary</p>
+                <h3 className="text-3xl font-black text-slate-900 dark:text-white mt-1">
+                  {formatBDT(67750)}
+                </h3>
+                <p className="text-[11px] text-emerald-600 font-bold mt-1">✓ Credited to BRAC Bank A/C ...6002</p>
+              </div>
 
-            <div className="space-y-2 text-xs">
-              <div className="flex justify-between text-slate-600 dark:text-slate-300">
-                <span>Basic Salary (50%)</span>
-                <span className="font-mono font-bold">{formatBDT(37500)}</span>
+              <div className="space-y-2 text-xs">
+                <div className="flex justify-between text-slate-600 dark:text-slate-300">
+                  <span>Basic Salary (50%)</span>
+                  <span className="font-mono font-bold">{formatBDT(37500)}</span>
+                </div>
+                <div className="flex justify-between text-slate-600 dark:text-slate-300">
+                  <span>House Rent (25%)</span>
+                  <span className="font-mono font-bold">{formatBDT(18750)}</span>
+                </div>
+                <div className="flex justify-between text-slate-600 dark:text-slate-300">
+                  <span>Medical & Conveyance</span>
+                  <span className="font-mono font-bold">{formatBDT(18750)}</span>
+                </div>
+                <div className="flex justify-between text-rose-600 pt-1 border-t border-slate-100 dark:border-slate-800">
+                  <span>Statutory Tax & Provident Fund</span>
+                  <span className="font-mono font-bold">-{formatBDT(7250)}</span>
+                </div>
               </div>
-              <div className="flex justify-between text-slate-600 dark:text-slate-300">
-                <span>House Rent (25%)</span>
-                <span className="font-mono font-bold">{formatBDT(18750)}</span>
-              </div>
-              <div className="flex justify-between text-slate-600 dark:text-slate-300">
-                <span>Medical & Conveyance</span>
-                <span className="font-mono font-bold">{formatBDT(18750)}</span>
-              </div>
-              <div className="flex justify-between text-rose-600 pt-1 border-t border-slate-100 dark:border-slate-800">
-                <span>Statutory Tax & Provident Fund</span>
-                <span className="font-mono font-bold">-{formatBDT(7250)}</span>
-              </div>
-            </div>
 
-            <div className="flex gap-2">
-              <button
-                onClick={() => setShowSlipModal(true)}
-                className="flex-1 py-2.5 rounded-xl bg-[#3758D8] text-white font-bold text-xs hover:bg-blue-600 transition-colors flex items-center justify-center gap-2 shadow-xs"
-              >
-                <Download className="w-4 h-4" /> View / Download PDF
-              </button>
+              <div className="flex gap-2">
+                <button
+                  onClick={() => setShowSlipModal(true)}
+                  className="flex-1 py-2.5 rounded-xl bg-[#3758D8] text-white font-bold text-xs hover:bg-blue-600 transition-colors flex items-center justify-center gap-2 shadow-xs"
+                >
+                  <Download className="w-4 h-4" /> View / Download PDF
+                </button>
+              </div>
             </div>
           </div>
-        </div>
+        )}
       </div>
 
       {/* Apply Leave Modal */}

@@ -14,14 +14,21 @@ import {
   LogOut,
   Layers,
   Settings,
+  Menu,
+  PanelLeftClose,
+  PanelLeftOpen,
+  Eye,
+  EyeOff,
 } from 'lucide-react';
 import { RoleSwitcherModal } from './role-switcher-modal';
 import { MobileAppDownloadButton } from '@/components/common/mobile-app-download-button';
 import { useCurrentUser } from '@/lib/use-current-user';
+import { useSidebar } from '@/lib/sidebar-context';
 
 export function CompanyAdminHeader() {
   const router = useRouter();
   const currentUser = useCurrentUser();
+  const { toggleMobile, isSidebarHidden, toggleSidebar, hideDashboardOptions, toggleDashboardOptions } = useSidebar();
   const [selectedBranch, setSelectedBranch] = useState('Banani Head Office');
   const [isDark, setIsDark] = useState(false);
   const [showRoleModal, setShowRoleModal] = useState(false);
@@ -38,21 +45,75 @@ export function CompanyAdminHeader() {
   };
 
   return (
-    <header className="h-16 px-6 bg-white dark:bg-[#1E293B] border-b border-slate-200 dark:border-slate-800 flex items-center justify-between z-20 transition-colors">
-      {/* Search Bar */}
-      <div className="relative w-72 md:w-80">
-        <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
+    <header className="h-16 px-3 sm:px-6 bg-white dark:bg-[#1E293B] border-b border-slate-200 dark:border-slate-800 flex items-center justify-between z-20 transition-colors gap-2 sm:gap-4">
+      {/* Left: Mobile Menu & Dashboard Hide/Focus Controls */}
+      <div className="flex items-center gap-1.5 sm:gap-2 flex-shrink-0">
+        {/* Mobile Hamburger Drawer Button */}
+        <button
+          type="button"
+          onClick={toggleMobile}
+          aria-label="Toggle Navigation Menu"
+          className="lg:hidden p-2 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors"
+          title="Open Menu"
+        >
+          <Menu className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
+        </button>
+
+        {/* Fullscreen / Focus Mode Toggle (Hide Sidebar) */}
+        <button
+          type="button"
+          onClick={toggleSidebar}
+          className="p-2 sm:px-3 sm:py-1.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors flex items-center gap-1.5 text-xs font-bold"
+          title={isSidebarHidden ? 'Show Navigation Menu' : 'Hide Navigation Menu (Full View)'}
+        >
+          {isSidebarHidden ? (
+            <>
+              <PanelLeftOpen className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
+              <span className="hidden sm:inline text-emerald-600 dark:text-emerald-400">Show Menu</span>
+            </>
+          ) : (
+            <>
+              <PanelLeftClose className="w-4 h-4 text-slate-500" />
+              <span className="hidden md:inline text-slate-600 dark:text-slate-400 font-semibold">Hide Menu</span>
+            </>
+          )}
+        </button>
+
+        {/* Toggle Dashboard Options Pill */}
+        <button
+          type="button"
+          onClick={toggleDashboardOptions}
+          className="hidden sm:flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors text-xs font-bold"
+          title={hideDashboardOptions ? 'Show Dashboard Options / Quick Actions' : 'Hide Dashboard Options / Quick Actions'}
+        >
+          {hideDashboardOptions ? (
+            <>
+              <Eye className="w-3.5 h-3.5 text-blue-500" />
+              <span className="text-blue-600 dark:text-blue-400">Show Options</span>
+            </>
+          ) : (
+            <>
+              <EyeOff className="w-3.5 h-3.5 text-slate-500" />
+              <span className="text-slate-600 dark:text-slate-400 font-semibold">Hide Options</span>
+            </>
+          )}
+        </button>
+      </div>
+
+      {/* Search Bar - Responsive Width */}
+      <div className="relative w-28 sm:w-44 md:w-64 lg:w-80 transition-all flex-shrink min-w-0">
+        <Search className="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
         <input
           type="text"
-          placeholder="Search employees, departments, projects... (Ctrl + K)"
-          className="w-full pl-10 pr-4 py-2 text-xs bg-slate-100 dark:bg-slate-800/80 border-none rounded-xl text-slate-800 dark:text-slate-100 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#10B981] transition-all"
+          placeholder="Search... (Ctrl + K)"
+          className="w-full pl-9 pr-3 py-1.5 sm:py-2 text-xs bg-slate-100 dark:bg-slate-800/80 border-none rounded-xl text-slate-800 dark:text-slate-100 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#10B981] transition-all"
         />
       </div>
 
       {/* Center/Right Controls */}
-      <div className="flex items-center gap-3">
+      <div className="flex items-center gap-1.5 sm:gap-3 flex-shrink-0">
         {/* Branch Selector of WorkForce 360 Ltd */}
-        <div className="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-xs font-bold text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700">
+        <div className="hidden lg:flex items-center gap-2 px-3 py-1.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-xs font-bold text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700">
           <MapPin className="w-3.5 h-3.5 text-emerald-600" />
           <select
             value={selectedBranch}

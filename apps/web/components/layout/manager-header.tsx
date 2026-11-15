@@ -14,14 +14,19 @@ import {
   Clock,
   LogOut,
   Layers,
+  Menu,
+  PanelLeftClose,
+  PanelLeftOpen,
 } from 'lucide-react';
 import { RoleSwitcherModal } from './role-switcher-modal';
 import { MobileAppDownloadButton } from '@/components/common/mobile-app-download-button';
 import { useCurrentUser } from '@/lib/use-current-user';
+import { useSidebar } from '@/lib/sidebar-context';
 
 export function ManagerHeader() {
   const router = useRouter();
   const currentUser = useCurrentUser();
+  const { toggleMobile, isSidebarHidden, toggleSidebar } = useSidebar();
   const [isDark, setIsDark] = useState(false);
   const [showRoleModal, setShowRoleModal] = useState(false);
   const [showNotifications, setShowNotifications] = useState(false);
@@ -37,21 +42,53 @@ export function ManagerHeader() {
   };
 
   return (
-    <header className="h-16 px-6 bg-white dark:bg-[#1E293B] border-b border-slate-200 dark:border-slate-800 flex items-center justify-between z-20 transition-colors">
+    <header className="h-16 px-3 sm:px-6 bg-white dark:bg-[#1E293B] border-b border-slate-200 dark:border-slate-800 flex items-center justify-between z-20 transition-colors gap-2 sm:gap-4">
+      {/* Left: Mobile Menu & Focus Mode */}
+      <div className="flex items-center gap-1.5 sm:gap-2 flex-shrink-0">
+        <button
+          type="button"
+          onClick={toggleMobile}
+          aria-label="Toggle Navigation Menu"
+          className="lg:hidden p-2 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors"
+          title="Open Menu"
+        >
+          <Menu className="w-5 h-5 text-purple-600 dark:text-purple-400" />
+        </button>
+
+        <button
+          type="button"
+          onClick={toggleSidebar}
+          className="p-2 sm:px-3 sm:py-1.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors flex items-center gap-1.5 text-xs font-bold"
+          title={isSidebarHidden ? 'Show Navigation Menu' : 'Hide Navigation Menu (Full View)'}
+        >
+          {isSidebarHidden ? (
+            <>
+              <PanelLeftOpen className="w-4 h-4 text-purple-600 dark:text-purple-400" />
+              <span className="hidden sm:inline text-purple-600 dark:text-purple-400">Show Menu</span>
+            </>
+          ) : (
+            <>
+              <PanelLeftClose className="w-4 h-4 text-slate-500" />
+              <span className="hidden md:inline text-slate-600 dark:text-slate-400 font-semibold">Hide Menu</span>
+            </>
+          )}
+        </button>
+      </div>
+
       {/* Search Bar for team scope */}
-      <div className="relative w-72 md:w-80">
-        <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
+      <div className="relative w-28 sm:w-44 md:w-64 lg:w-80 transition-all flex-shrink min-w-0">
+        <Search className="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
         <input
           type="text"
-          placeholder="Search team members, tasks, sprints... (Ctrl + K)"
-          className="w-full pl-10 pr-4 py-2 text-xs bg-slate-100 dark:bg-slate-800/80 border-none rounded-xl text-slate-800 dark:text-slate-100 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#8B5CF6] transition-all"
+          placeholder="Search team... (Ctrl + K)"
+          className="w-full pl-9 pr-3 py-1.5 sm:py-2 text-xs bg-slate-100 dark:bg-slate-800/80 border-none rounded-xl text-slate-800 dark:text-slate-100 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#8B5CF6] transition-all"
         />
       </div>
 
       {/* Right Controls */}
-      <div className="flex items-center gap-3">
+      <div className="flex items-center gap-1.5 sm:gap-3 flex-shrink-0">
         {/* Team Availability Pill */}
-        <div className="hidden sm:flex items-center gap-2 px-3 py-1 rounded-xl bg-purple-50 dark:bg-purple-950/40 text-purple-700 dark:text-purple-300 border border-purple-200 dark:border-purple-900/60 text-xs font-bold">
+        <div className="hidden lg:flex items-center gap-2 px-3 py-1 rounded-xl bg-purple-50 dark:bg-purple-950/40 text-purple-700 dark:text-purple-300 border border-purple-200 dark:border-purple-900/60 text-xs font-bold">
           <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
           <span>WorkForce 360 Engineering Team</span>
         </div>

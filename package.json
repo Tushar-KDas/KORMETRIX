@@ -1,7 +1,7 @@
 {
-  "name": "workforce-360",
-  "version": "2.0.0",
-  "description": "WorkForce 360 - One Platform. Complete Workforce Control. Enterprise HRMS & Workforce Management SaaS.",
+  "name": "kormetrix",
+  "version": "2.1.0",
+  "description": "KORMETRIX - People. Work. Performance. Enterprise Workforce Management Platform.",
   "private": true,
   "workspaces": [
     "apps/*",
@@ -19,7 +19,7 @@
     "verify:security": "node scripts/security-audit.js"
   },
   "keywords": [
-    "workforce360",
+    "kormetrix",
     "hrms",
     "payroll",
     "attendance",
@@ -29,7 +29,7 @@
     "saas",
     "bangladesh"
   ],
-  "author": "WorkForce 360 Architecture Team",
+  "author": "KORMETRIX Core Architecture Team",
   "license": "Commercial",
   "devDependencies": {
     "sharp": "^0.35.5"

@@ -14,7 +14,7 @@ export function MobileAppDownloadButton({
 }: MobileAppDownloadButtonProps) {
   const [showModal, setShowModal] = useState(false);
 
-  const apkDirectUrl = '/WorkForce360-v2.0.0.apk';
+  const apkDirectUrl = '/Kormetrix-v2.1.0.apk';
   const gdriveUrl = 'https://drive.google.com/file/d/169QtVxLq1k56stvIEDHxGMs8f0vG42UZ/view?usp=drivesdk';
 
   if (variant === 'floating') {
@@ -114,7 +114,7 @@ function DownloadModal({
                 Download Mobile App
               </h3>
               <p className="text-xs text-slate-500 dark:text-slate-400 font-semibold">
-                KORMETRIX Enterprise • v2.0.0
+                KORMETRIX Go • v2.1.0
               </p>
             </div>
           </div>
@@ -147,7 +147,7 @@ function DownloadModal({
           {/* Option 1: Direct APK Download */}
           <a
             href={apkDirectUrl}
-            download="WorkForce360-v2.0.0.apk"
+            download="Kormetrix-v2.1.0.apk"
             className="w-full py-3.5 px-4 rounded-2xl bg-[#10B981] hover:bg-emerald-600 text-white font-extrabold text-xs flex items-center justify-between shadow-lg shadow-emerald-600/25 transition-all group"
           >
             <div className="flex items-center gap-2.5">

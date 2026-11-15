@@ -33,11 +33,13 @@
 
 - **App Label:** `KORMETRIX`
 - **Product Suite:** `Kormetrix Go`
-- **Root File Location:** [WorkForce360-v2.0.0.apk](file:///c:/Users/Gigabyte/.gemini/antigravity/scratch/WorkForce%20360/WorkForce360-v2.0.0.apk)
-- **App Version:** `2.0.0+1`
+- **Root File Location:** [Kormetrix-v2.1.0.apk](file:///c:/Users/Gigabyte/.gemini/antigravity/scratch/WorkForce%20360/Kormetrix-v2.1.0.apk)
+- **Legacy Compatibility File:** [WorkForce360-v2.0.0.apk](file:///c:/Users/Gigabyte/.gemini/antigravity/scratch/WorkForce%20360/WorkForce360-v2.0.0.apk)
+- **App Version:** `2.1.0+1`
 - **Application ID:** `com.workforce360.mobile` (Preserved for compatibility)
 - **Target SDK:** Android 36 (Android 14/15/UpsideDownCake ready)
 - **Min SDK:** Android 24 (Compatible with 99.4% of Android devices)
+- **File Size:** `189.4 MB` (Compiled with official 3D master squircle icon and full-density mipmaps)
 - **Key Features Included:**
   - 10 UI Screens matching pixel-perfect uploaded reference design
   - 5 Department Teams & 100 Employees Directory (`/teams`)

@@ -103,7 +103,7 @@ export function RoleSwitcherModal({ isOpen, onClose, currentRole }: RoleSwitcher
               <span>Switch Workspace Dashboard</span>
             </h3>
             <p className="text-xs text-slate-500">
-              Select any of the five purpose-built role dashboards inside WorkForce 360.
+              Select any of the five purpose-built role dashboards inside KORMETRIX.
             </p>
           </div>
           <button

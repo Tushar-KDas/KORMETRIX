@@ -10,6 +10,7 @@
     "test": "node test-runner.js"
   },
   "dependencies": {
+    "@workforce360/brand-config": "*",
     "@workforce360/design-tokens": "*",
     "@workforce360/shared-types": "*",
     "@workforce360/permission-engine": "*",

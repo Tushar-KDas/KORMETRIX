@@ -86,12 +86,14 @@ export function EmployeeIdCardModal({ employee, isOpen, onClose }: EmployeeIdCar
               {/* Header Branding */}
               <div className="flex items-center justify-between pt-1">
                 <div className="flex items-center gap-2">
-                  <div className="w-7 h-7 rounded-lg bg-[#3758D8] flex items-center justify-center font-black text-white text-sm">
-                    W
+                  <div className="w-7 h-7 rounded-lg bg-[#14243F] border border-blue-500/40 flex items-center justify-center font-black text-white text-sm">
+                    K
                   </div>
                   <div>
-                    <h4 className="text-xs font-black tracking-tight leading-none text-white">WorkForce 360</h4>
-                    <p className="text-[9px] text-blue-300 font-bold uppercase tracking-wider">WorkForce 360 Ltd</p>
+                    <h4 className="text-xs font-black tracking-tight leading-none text-white flex items-center gap-0.5">
+                      KORMETRI<span className="text-[#19B89A]">X</span>
+                    </h4>
+                    <p className="text-[9px] text-teal-300 font-bold uppercase tracking-wider">WorkForce 360 Ltd</p>
                   </div>
                 </div>
 
@@ -171,13 +173,13 @@ export function EmployeeIdCardModal({ employee, isOpen, onClose }: EmployeeIdCar
                   Cardholder Declaration & Terms
                 </p>
                 <p>
-                  1. This card is the property of <b>WorkForce 360 Ltd.</b> and must be returned upon cessation of employment.
+                  1. This card is issued under <b>KORMETRIX Enterprise</b> for WorkForce 360 Ltd. and must be returned upon cessation of employment.
                 </p>
                 <p>
                   2. Misuse, transfer, or duplication is strictly prohibited and subject to legal action under the Bangladesh ICT Act.
                 </p>
                 <p>
-                  3. If lost or found, please return to any WorkForce 360 office or drop in any Bangladesh Post mailbox.
+                  3. If lost or found, please return to any KORMETRIX authorized office or drop in any Bangladesh Post mailbox.
                 </p>
               </div>
 

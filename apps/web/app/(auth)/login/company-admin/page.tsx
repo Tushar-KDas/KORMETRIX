@@ -33,7 +33,7 @@ export default function CompanyAdminLoginPage() {
           </div>
           <h2 className="text-2xl font-black text-slate-900 dark:text-white">Company Admin Login</h2>
           <p className="text-xs text-emerald-600 dark:text-emerald-400 font-bold uppercase tracking-wider">
-            WorkForce 360 Ltd • Enterprise Admin
+            WorkForce 360 Ltd • Kormetrix Company Admin
           </p>
         </div>
 

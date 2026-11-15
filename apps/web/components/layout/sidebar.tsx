@@ -102,14 +102,14 @@ export function Sidebar() {
           <div className="flex items-center gap-3">
             <img
               src="/icon.png"
-              alt="WorkForce 360"
+              alt="KORMETRIX"
               className="w-10 h-10 object-contain drop-shadow-md"
             />
             <div>
-              <h1 className="font-bold text-white text-base tracking-tight flex items-center gap-1.5">
-                WorkForce <span className="text-[#3758D8]">360</span>
+              <h1 className="font-bold text-white text-base tracking-tight flex items-center gap-0.5">
+                KORMETRI<span className="text-[#19B89A]">X</span>
               </h1>
-              <p className="text-[10px] text-slate-400 font-medium">One Platform. Complete Control.</p>
+              <p className="text-[10px] text-slate-400 font-medium">People. Work. Performance.</p>
             </div>
           </div>
           {/* Mobile Close Button */}
@@ -239,7 +239,7 @@ export function Sidebar() {
               <LogOut className="w-6 h-6" />
             </div>
             <div className="text-center space-y-1">
-              <h3 className="text-base font-bold text-white">Log Out from WorkForce 360?</h3>
+              <h3 className="text-base font-bold text-white">Log Out from KORMETRIX?</h3>
               <p className="text-xs text-slate-400">
                 You will be securely signed out from this session and returned to the role login page.
               </p>

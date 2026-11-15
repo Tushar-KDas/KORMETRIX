@@ -74,7 +74,7 @@ void main() {
     HttpOverrides.global = _MockHttpOverrides();
   });
 
-  group('WorkForce 360 Mobile Unit & Widget Tests', () {
+  group('KORMETRIX Mobile Unit & Widget Tests', () {
     test('Bangladesh Currency Formatter formats BDT correctly', () {
       expect(CurrencyFormatter.formatBDT(245000), '৳ 2,45,000');
       expect(CurrencyFormatter.formatBDT(75000), '৳ 75,000');
@@ -92,12 +92,12 @@ void main() {
     testWidgets('App renders Intro Screen cleanly with Get Started button', (WidgetTester tester) async {
       await tester.pumpWidget(
         const ProviderScope(
-          child: WorkForce360App(),
+          child: KormetrixApp(),
         ),
       );
       await tester.pumpAndSettle();
 
-      expect(find.text('WorkForce 360'), findsOneWidget);
+      expect(find.text('KORMETRIX'), findsOneWidget);
       expect(find.text('Get Started'), findsOneWidget);
       expect(find.text('Smart Workforce. Stronger Business.'), findsOneWidget);
     });

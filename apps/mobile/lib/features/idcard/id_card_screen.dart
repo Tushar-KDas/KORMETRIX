@@ -270,15 +270,15 @@ class _IdCardScreenState extends State<IdCardScreen> with SingleTickerProviderSt
                       borderRadius: BorderRadius.circular(10),
                     ),
                     child: const Center(
-                      child: Text('W', style: TextStyle(color: Colors.white, fontWeight: FontWeight.w900, fontSize: 18)),
+                      child: Text('K', style: TextStyle(color: Colors.white, fontWeight: FontWeight.w900, fontSize: 18)),
                     ),
                   ),
                   const SizedBox(width: 8),
                   const Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text('WorkForce 360', style: TextStyle(color: Colors.white, fontWeight: FontWeight.w900, fontSize: 13)),
-                      Text('WorkForce 360 Ltd', style: TextStyle(color: AppColors.primaryBlue, fontSize: 9, fontWeight: FontWeight.bold)),
+                      Text('KORMETRIX', style: TextStyle(color: Colors.white, fontWeight: FontWeight.w900, fontSize: 13)),
+                      Text('WorkForce 360 Ltd', style: TextStyle(color: AppColors.accentTeal, fontSize: 9, fontWeight: FontWeight.bold)),
                     ],
                   ),
                 ],
@@ -456,7 +456,7 @@ class _IdCardScreenState extends State<IdCardScreen> with SingleTickerProviderSt
               ),
               SizedBox(height: 6),
               Text(
-                '1. This card is property of WorkForce 360 Ltd. and must be returned upon exit.',
+                '1. This card is property of the issuing organization and KORMETRIX Enterprise, and must be returned upon exit.',
                 style: TextStyle(color: Colors.white60, fontSize: 9, height: 1.3),
               ),
               SizedBox(height: 4),
@@ -466,7 +466,7 @@ class _IdCardScreenState extends State<IdCardScreen> with SingleTickerProviderSt
               ),
               SizedBox(height: 4),
               Text(
-                '3. If found, please return to any WorkForce 360 office or drop in any post mailbox.',
+                '3. If found, please return to any KORMETRIX authorized office or drop in any post mailbox.',
                 style: TextStyle(color: Colors.white60, fontSize: 9, height: 1.3),
               ),
             ],

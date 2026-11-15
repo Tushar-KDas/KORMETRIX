@@ -31,7 +31,7 @@ export default function SuperAdminLoginPage() {
           </div>
           <h2 className="text-2xl font-black text-slate-900 dark:text-white">Super Admin Login</h2>
           <p className="text-xs text-blue-600 dark:text-blue-400 font-bold uppercase tracking-wider">
-            Platform Root Authority • 128 Tenants
+            KORMETRIX Control • Root Authority
           </p>
         </div>
 

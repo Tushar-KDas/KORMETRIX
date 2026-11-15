@@ -112,7 +112,7 @@ export function EmployeeHeader() {
                   </div>
                   <div className="p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800/40">
                     <p className="font-bold text-slate-800 dark:text-white">New Task Assigned</p>
-                    <p className="text-[11px] text-slate-500 mt-0.5">Complete UI Design ticket for WorkForce 360 Sprint 4.</p>
+                    <p className="text-[11px] text-slate-500 mt-0.5">Complete UI Design ticket for KORMETRIX Sprint 4.</p>
                     <span className="text-[10px] text-slate-400 font-semibold mt-1 block">2h ago</span>
                   </div>
                 </div>

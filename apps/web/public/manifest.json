@@ -1,0 +1,27 @@
+{
+  "name": "KORMETRIX — Enterprise Workforce Management Platform",
+  "short_name": "KORMETRIX",
+  "description": "People. Work. Performance. One integrated platform to manage your employees, attendance, payroll and business operations.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#101827",
+  "theme_color": "#14243F",
+  "icons": [
+    {
+      "src": "/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "/icons/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}

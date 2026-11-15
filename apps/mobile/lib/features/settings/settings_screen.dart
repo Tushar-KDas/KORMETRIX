@@ -119,20 +119,20 @@ class SettingsScreen extends ConsumerWidget {
       context: context,
       builder: (ctx) => AlertDialog(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
-        title: const Text('WorkForce 360', style: TextStyle(fontWeight: FontWeight.w900)),
+        title: const Text('KORMETRIX', style: TextStyle(fontWeight: FontWeight.w900)),
         content: const Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('Version: 2.0.0 (Release Build)'),
+            Text('Version: 2.0.0 (Enterprise Release)'),
             SizedBox(height: 4),
-            Text('Tagline: One Platform. Complete Workforce Control.'),
+            Text('Tagline: People. Work. Performance.'),
             SizedBox(height: 4),
             Text('Enterprise Tenant: WorkForce 360 Ltd'),
             SizedBox(height: 4),
             Text('Engineered with Flutter & Supabase.'),
             SizedBox(height: 8),
-            Text('© 2026 WorkForce 360 Inc. All rights reserved.', style: TextStyle(fontSize: 11, color: AppColors.textSecondary)),
+            Text('© 2026 KORMETRIX. All rights reserved.', style: TextStyle(fontSize: 11, color: AppColors.textSecondary)),
           ],
         ),
         actions: [
@@ -161,12 +161,12 @@ class SettingsScreen extends ConsumerWidget {
               const ListTile(
                 leading: Icon(Icons.email_outlined, color: AppColors.primaryBlue),
                 title: Text('Email Support'),
-                subtitle: Text('support@workforce360.com'),
+                subtitle: Text('support@kormetrix.com'),
               ),
               const ListTile(
                 leading: Icon(Icons.phone_in_talk_outlined, color: AppColors.presentGreen),
                 title: Text('Helpline (Bangladesh)'),
-                subtitle: Text('+880 9612 360360 (9 AM - 8 PM)'),
+                subtitle: Text('+880 9612 567638 (9 AM - 8 PM)'),
               ),
               const ListTile(
                 leading: Icon(Icons.chat_bubble_outline, color: AppColors.accentCyan),
@@ -199,7 +199,7 @@ class SettingsScreen extends ConsumerWidget {
       builder: (ctx) => AlertDialog(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
         title: const Text('Confirm Log Out', style: TextStyle(fontWeight: FontWeight.w800)),
-        content: const Text('Are you sure you want to log out of your WorkForce 360 account?'),
+        content: const Text('Are you sure you want to log out of your KORMETRIX account?'),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(ctx),

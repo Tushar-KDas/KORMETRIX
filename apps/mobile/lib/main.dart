@@ -11,20 +11,20 @@ void main() async {
 
   runApp(
     const ProviderScope(
-      child: WorkForce360App(),
+      child: KormetrixApp(),
     ),
   );
 }
 
-class WorkForce360App extends ConsumerWidget {
-  const WorkForce360App({super.key});
+class KormetrixApp extends ConsumerWidget {
+  const KormetrixApp({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final appState = ref.watch(appStateProvider);
 
     return MaterialApp.router(
-      title: 'WorkForce 360',
+      title: 'KORMETRIX',
       debugShowCheckedModeBanner: false,
       theme: AppTheme.lightTheme,
       darkTheme: AppTheme.darkTheme,

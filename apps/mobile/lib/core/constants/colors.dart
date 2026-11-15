@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 
 class AppColors {
-  // Brand Primary & Accent (Matches Exact Mockup)
-  static const Color primaryNavy = Color(0xFF17243B);
-  static const Color primaryBlue = Color(0xFF3758D8);
-  static const Color primaryBlueDark = Color(0xFF1E3A8A);
-  static const Color royalBlue = Color(0xFF2F54EB);
-  static const Color accentTeal = Color(0xFF16A389);
-  static const Color accentCyan = Color(0xFF06B6D4);
+  // Brand Primary & Accent (KORMETRIX Official System)
+  static const Color primaryNavy = Color(0xFF14243F);
+  static const Color primaryBlue = Color(0xFF3158D8);
+  static const Color primaryBlueDark = Color(0xFF101827);
+  static const Color royalBlue = Color(0xFF3158D8);
+  static const Color accentTeal = Color(0xFF19B89A);
+  static const Color accentCyan = Color(0xFF00D09C);
 
   // Background & Surface
-  static const Color backgroundLight = Color(0xFFF8FAFC);
-  static const Color backgroundDark = Color(0xFF0F172A);
+  static const Color backgroundLight = Color(0xFFF5F7FB);
+  static const Color backgroundDark = Color(0xFF101827);
   static const Color surfaceWhite = Color(0xFFFFFFFF);
   static const Color cardDark = Color(0xFF1E293B);
   static const Color borderLight = Color(0xFFE2E8F0);

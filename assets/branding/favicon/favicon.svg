@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="100%" height="100%">
+  <defs>
+    <!-- Background Gradient for Icon -->
+    <linearGradient id="kmxBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#14243F"/>
+      <stop offset="40%" stop-color="#101827"/>
+      <stop offset="100%" stop-color="#1E3A8A"/>
+    </linearGradient>
+    
+    <!-- K Stem Gradient -->
+    <linearGradient id="kStem" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#2563EB"/>
+      <stop offset="60%" stop-color="#1D4ED8"/>
+      <stop offset="100%" stop-color="#19B89A"/>
+    </linearGradient>
+
+    <!-- Cyan/Teal Swoosh Gradient -->
+    <linearGradient id="swooshTeal" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00E5FF"/>
+      <stop offset="50%" stop-color="#06B6D4"/>
+      <stop offset="100%" stop-color="#19B89A"/>
+    </linearGradient>
+
+    <!-- Deep Blue Swoosh Shadow -->
+    <linearGradient id="swooshNavy" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#0F172A"/>
+      <stop offset="100%" stop-color="#1E40AF"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Left Vertical Stem of K -->
+  <path d="M 110,80 L 195,80 C 200,80 205,85 205,90 L 205,370 C 205,405 175,435 140,435 C 120,435 110,420 110,400 Z" fill="url(#kStem)"/>
+
+  <!-- Lower Diagonal Arm of K -->
+  <path d="M 180,270 L 325,430 C 330,435 340,435 350,435 L 410,435 C 418,435 422,428 416,422 L 255,245 Z" fill="#1D4ED8"/>
+
+  <!-- Upper Diagonal Arm with Human Silhouette -->
+  <!-- Figure Torso forming upper diagonal -->
+  <path d="M 195,225 L 340,95 C 345,90 355,90 365,90 L 415,90 C 423,90 426,98 420,104 L 285,250 Z" fill="#2563EB"/>
+  
+  <!-- Stylized Upward Human Figure inside Upper Arm -->
+  <path d="M 235,215 C 265,185 305,145 345,115 C 330,150 305,185 270,225 C 255,210 245,212 235,215 Z" fill="#FFFFFF"/>
+  <circle cx="325" cy="118" r="22" fill="#FFFFFF"/>
+
+  <!-- Dynamic Orbital 3D Swoosh (Background Wrap) -->
+  <path d="M 100,320 C 60,300 45,255 75,200 C 115,130 230,85 365,85 C 435,85 470,110 465,145 C 460,180 415,220 340,260 C 255,305 155,340 100,320 Z" fill="none" stroke="url(#swooshNavy)" stroke-width="16" stroke-linecap="round" opacity="0.6"/>
+
+  <!-- Dynamic Orbital 3D Swoosh (Foreground Wrap - Bright Cyan/Teal) -->
+  <path d="M 65,335 C 95,355 160,355 245,330 C 345,300 425,240 455,185 C 475,150 465,120 435,110 C 400,100 330,130 250,175 C 160,225 85,290 65,335 Z" fill="url(#swooshTeal)"/>
+</svg>

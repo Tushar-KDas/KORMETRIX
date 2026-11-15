@@ -1,24 +1,44 @@
-# WORKFORCE 360 — PROJECT EXECUTION TRACKER
+# KORMETRIX — PROJECT EXECUTION TRACKER
 
-**System Name:** WorkForce 360  
-**Tagline:** One Platform. Complete Workforce Control.  
+**System Name:** KORMETRIX  
+**Tagline:** People. Work. Performance.  
 **Architecture:** Enterprise Monorepo (Next.js 14 Web Portal, Flutter Mobile App, Supabase PostgreSQL & Backend, Shared Packages)  
 **Localization:** Bangladesh (Dhaka / BDT ৳ / বাংলা + English)  
 **Status Legend:** `NOT STARTED` | `IN PROGRESS` | `IMPLEMENTED` | `TESTED` | `BLOCKED`
 
 ---
 
-## 1. Android Mobile APK Binary Release
+## 1. Global Rebranding to KORMETRIX (`v2.1.0`)
 
-- **APK File Name:** `WorkForce360-v2.0.0.apk`
+- **Brand Name:** KORMETRIX
+- **Tagline:** People. Work. Performance.
+- **Product Family Modules:**
+  - **KORMETRIX Control:** Platform Super Admin Dashboard (`/platform-admin`)
+  - **Kormetrix Company:** Company Admin Dashboard (`/admin`)
+  - **Kormetrix People:** HR Administrator Portal (`/hr`)
+  - **Kormetrix Team:** Team Manager Portal (`/manager`)
+  - **Kormetrix Desk:** Employee Self-Service Portal (`/employee`)
+  - **Kormetrix Go:** Flutter Android & iOS Mobile Application
+- **Master Assets:**
+  - Vector Geometric K Monogram with Human Silhouette & Orbital Swooshes
+  - Primary Wordmark with Vivid Teal Accent on 'X'
+  - 1024×1024 Master Squircle App Icon
+  - Full Density Android Launcher Mipmaps (`mdpi` to `xxxhdpi`)
+  - PWA 192×192 / 512×512 Adaptive Icons & SVG Favicon
+- **Brand Management Engine:** `/platform-admin/branding` with live theme swatches, remote asset overrides, validation, publishing, and audit history.
+
+---
+
+## 2. Android Mobile APK Binary Release
+
+- **App Label:** `KORMETRIX`
+- **Product Suite:** `Kormetrix Go`
 - **Root File Location:** [WorkForce360-v2.0.0.apk](file:///c:/Users/Gigabyte/.gemini/antigravity/scratch/WorkForce%20360/WorkForce360-v2.0.0.apk)
-- **Build Output Location:** [app-debug.apk](file:///c:/Users/Gigabyte/.gemini/antigravity/scratch/WorkForce%20360/apps/mobile/build/app/outputs/flutter-apk/app-debug.apk)
 - **App Version:** `2.0.0+1`
-- **Application ID:** `com.workforce360.mobile`
+- **Application ID:** `com.workforce360.mobile` (Preserved for compatibility)
 - **Target SDK:** Android 36 (Android 14/15/UpsideDownCake ready)
 - **Min SDK:** Android 24 (Compatible with 99.4% of Android devices)
-- **File Size:** `187.38 MB` (Debug package with all offline assets, icons, fonts & offline DB)
-- **Key Features Included in APK:**
+- **Key Features Included:**
   - 10 UI Screens matching pixel-perfect uploaded reference design
   - 5 Department Teams & 100 Employees Directory (`/teams`)
   - Both-Side Smart ID Card with 3D Flip animation & Bluetooth/WiFi printing (`/idcard`)
@@ -31,7 +51,7 @@
 
 ---
 
-## 2. 5 Teams & 100 Employees Roster
+## 3. 5 Teams & 100 Employees Roster
 
 | Team ID | Department Name | Squad Lead | Member Count | ID Range | Status |
 |---|---|---|---|---|---|

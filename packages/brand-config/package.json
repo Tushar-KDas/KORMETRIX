@@ -1,0 +1,13 @@
+{
+  "name": "@workforce360/brand-config",
+  "version": "1.0.0",
+  "description": "Centralized KORMETRIX brand configuration, colors, typography, and assets.",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc"
+  },
+  "devDependencies": {
+    "typescript": "^5.4.5"
+  }
+}

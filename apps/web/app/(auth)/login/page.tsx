@@ -198,11 +198,13 @@ function LoginForm() {
       <div className="text-center space-y-2">
         <img
           src="/icon.png"
-          alt="WorkForce 360 Logo"
+          alt="KORMETRIX Logo"
           className="w-16 h-16 object-contain mx-auto drop-shadow-md animate-in zoom-in-95"
         />
-        <h2 className="text-2xl font-black text-slate-900 dark:text-white tracking-tight">WorkForce 360</h2>
-        <p className="text-xs text-slate-500 font-semibold">One Platform. Complete Workforce Control.</p>
+        <h2 className="text-2xl font-black text-slate-900 dark:text-white tracking-tight">
+          KORMETRI<span className="text-[#19B89A]">X</span>
+        </h2>
+        <p className="text-xs text-slate-500 font-semibold tracking-wide">People. Work. Performance.</p>
       </div>
 
       {/* Dedicated 5-Role Tabs Switcher */}
@@ -461,7 +463,7 @@ function LoginForm() {
 export default function LoginPage() {
   return (
     <div className="min-h-screen bg-[#F5F7FB] dark:bg-[#101827] flex items-center justify-center p-4">
-      <Suspense fallback={<div className="text-sm font-bold text-slate-500">Loading WorkForce 360 Login...</div>}>
+      <Suspense fallback={<div className="text-sm font-bold text-slate-500">Loading KORMETRIX Authentication...</div>}>
         <LoginForm />
       </Suspense>
     </div>

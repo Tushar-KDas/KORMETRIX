@@ -90,14 +90,14 @@ export function CompanyAdminSidebar() {
           <div className="flex items-center gap-3">
             <img
               src="/icon.png"
-              alt="WorkForce 360"
+              alt="KORMETRIX"
               className="w-10 h-10 object-contain drop-shadow-md"
             />
             <div>
-              <h1 className="font-bold text-white text-base tracking-tight flex items-center gap-1.5">
-                WorkForce <span className="text-[#10B981]">360</span>
+              <h1 className="font-bold text-white text-base tracking-tight flex items-center gap-0.5">
+                KORMETRI<span className="text-[#19B89A]">X</span>
               </h1>
-              <p className="text-[10px] text-emerald-400 font-bold uppercase tracking-wider">Company Admin</p>
+              <p className="text-[10px] text-emerald-400 font-bold uppercase tracking-wider">Kormetrix Company</p>
             </div>
           </div>
           {/* Mobile Close Button */}

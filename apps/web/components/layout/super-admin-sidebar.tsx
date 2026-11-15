@@ -16,6 +16,7 @@ import {
   LogOut,
   Layers,
   Sparkles,
+  Palette,
   X,
   PanelLeftClose,
 } from 'lucide-react';
@@ -36,6 +37,7 @@ const superAdminNav: NavItem[] = [
   { name: 'Platform Overview', nameBn: 'প্ল্যাটফর্ম ওভারভিউ', href: '/platform-admin', icon: LayoutDashboard },
   { name: 'Organizations', nameBn: 'প্রতিষ্ঠানসমূহ', href: '/platform-admin/organizations', icon: Building2, badge: '128' },
   { name: 'SaaS Subscriptions', nameBn: 'সাবস্ক্রিপশন ও বিলিং', href: '/platform-admin/subscriptions', icon: CreditCard },
+  { name: 'Brand Management', nameBn: 'ব্র্যান্ড ম্যানেজমেন্ট', href: '/platform-admin/branding', icon: Palette, badge: 'NEW' },
   { name: 'Remote Control & Flags', nameBn: 'রিমোট কন্ট্রোল ও ফ্ল্যাগ', href: '/platform-admin/remote-control', icon: Sliders },
 ];
 
@@ -72,14 +74,14 @@ export function SuperAdminSidebar() {
           <div className="flex items-center gap-3">
             <img
               src="/icon.png"
-              alt="WorkForce 360"
+              alt="KORMETRIX"
               className="w-10 h-10 object-contain drop-shadow-md"
             />
             <div>
-              <h1 className="font-bold text-white text-base tracking-tight flex items-center gap-1.5">
-                WorkForce <span className="text-[#3758D8]">360</span>
+              <h1 className="font-bold text-white text-base tracking-tight flex items-center gap-0.5">
+                KORMETRI<span className="text-[#19B89A]">X</span>
               </h1>
-              <p className="text-[10px] text-blue-400 font-bold uppercase tracking-wider">Super Admin Console</p>
+              <p className="text-[10px] text-blue-400 font-bold uppercase tracking-wider">KORMETRIX Control</p>
             </div>
           </div>
           {/* Mobile Close Button */}
@@ -205,7 +207,7 @@ export function SuperAdminSidebar() {
               <LogOut className="w-6 h-6" />
             </div>
             <div className="text-center space-y-1">
-              <h3 className="text-base font-bold text-white">Log Out from Super Admin?</h3>
+              <h3 className="text-base font-bold text-white">Log Out from KORMETRIX Control?</h3>
               <p className="text-xs text-slate-400">Session will be terminated securely.</p>
             </div>
             <div className="grid grid-cols-2 gap-2 pt-2 text-xs font-bold">

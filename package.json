@@ -10,7 +10,7 @@
   "scripts": {
     "dev": "npm --workspace=apps/web run dev",
     "build": "npm run build:packages && npm --workspace=apps/web run build",
-    "build:packages": "npm --workspace=packages/shared-types run build && npm --workspace=packages/design-tokens run build && npm --workspace=packages/permission-engine run build && npm --workspace=packages/validation run build && npm --workspace=packages/api-contracts run build",
+    "build:packages": "npm --workspace=packages/brand-config run build && npm --workspace=packages/shared-types run build && npm --workspace=packages/design-tokens run build && npm --workspace=packages/permission-engine run build && npm --workspace=packages/validation run build && npm --workspace=packages/api-contracts run build",
     "lint": "npm --workspace=apps/web run lint",
     "test": "npm run test:packages && npm --workspace=apps/web run test",
     "test:packages": "node scripts/test-packages.js",
@@ -30,5 +30,8 @@
     "bangladesh"
   ],
   "author": "WorkForce 360 Architecture Team",
-  "license": "Commercial"
+  "license": "Commercial",
+  "devDependencies": {
+    "sharp": "^0.35.5"
+  }
 }

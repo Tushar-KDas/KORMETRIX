@@ -149,9 +149,9 @@ export default function PlatformAdminDashboard() {
             </button>
             <div className="hidden lg:flex flex-col items-end text-right">
               <span className="text-xl font-serif italic text-blue-200">
-                Smarter Workforce. Stronger Business.
+                People. Work. Performance.
               </span>
-              <span className="text-xs text-blue-200/80 mt-1">WorkForce 360 Enterprise Bangladesh</span>
+              <span className="text-xs text-blue-200/80 mt-1">KORMETRIX Control • Enterprise Bangladesh</span>
             </div>
           </div>
         </div>
